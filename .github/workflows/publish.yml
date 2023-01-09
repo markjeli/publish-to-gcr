@@ -1,6 +1,5 @@
 name: Publish to Docker
-on:
-  push:
+on: [push]
     branches:
       - main
 jobs:
@@ -14,6 +13,6 @@ jobs:
         with:
           username: markjeli
           password: ${{ secrets.GITHUB_TOKEN }}
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           repository: markjeli/publish-packages/game
           tag_with_sha: true
