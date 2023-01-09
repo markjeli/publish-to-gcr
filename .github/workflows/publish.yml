@@ -1,6 +1,6 @@
-# name: publish
+name: publish
 
-# on: [push]
+on: [push]
 
 jobs:
   build:
