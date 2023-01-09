@@ -17,7 +17,7 @@ jobs:
     - uses: docker/build-push-action@v2
       with:
        context: .
-       tags: ghcr.io/myapp:latest
+       tags: ghcr.io/markjeli/myapp:latest
        push: true
 
     # - name: Build the hello-world Docker image
