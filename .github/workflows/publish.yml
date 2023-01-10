@@ -22,4 +22,4 @@ jobs:
           registry: ghcr.io
           # githubOrg: markjeli # optional
           username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          password: ${{ secrets.CR_PAT2 }}
