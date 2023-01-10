@@ -4,7 +4,7 @@ name: publish
 on: [push]
 
 jobs:
-  publish-hello-world-image:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       with:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
-        password: ${{ secrets.CR_PAT }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build the hello-world Docker image
       run: |
