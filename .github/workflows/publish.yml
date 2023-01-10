@@ -27,8 +27,12 @@ jobs:
           password: ${{ secrets.CR_PAT }}
       -
         name: Build and push
-        uses: docker/build-push-action@v3
+        uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository }}:latest
+          image: hello-world
+          tag: latest
+          content: .
+          registry: ghcr.io
+          # githubOrg: markjeli # optional
+          username: ${{ github.actor }}
+          password: ${{ secrets.CR_PAT }}
