@@ -20,5 +20,4 @@ jobs:
     - name: Build the hello-world Docker image
       run: |
         docker build . --tag ghcr.io/markjeli/hello-world:latest
-        docker run ghcr.io/markjeli/hello-world:latest
         docker push ghcr.io/markjeli/hello-world:latest
