@@ -20,7 +20,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: hello-world
-        dockerfile: Dockerfile
+        dockerfile: .
         registry: ghcr.io
         # githubOrg: markjeli # optional
         username: ${{ github.actor }}
