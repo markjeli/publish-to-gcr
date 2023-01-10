@@ -20,6 +20,7 @@ jobs:
     - uses: mr-smithers-excellent/docker-build-push@v5
       with:
         image: hello-world
+        tag: latest
         dockerfile: .
         registry: ghcr.io
         # githubOrg: markjeli # optional
