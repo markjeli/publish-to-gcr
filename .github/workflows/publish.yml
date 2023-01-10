@@ -10,18 +10,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Login to GitHub Container Registry
+    #   uses: docker/login-action@v2
+    #   with:
+    #     registry: ghcr.io
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
 
     - uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: image-name
+        image: hello-world
         registry: ghcr.io
-        githubOrg: override-org # optional
+        # githubOrg: markjeli # optional
         username: ${{ github.actor }}
         password: ${{ secrets.CR_PAT }}
   #  - uses: docker/build-push-action@v2
