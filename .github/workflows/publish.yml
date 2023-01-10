@@ -17,11 +17,18 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-   - uses: docker/build-push-action@v2
+    - uses: mr-smithers-excellent/docker-build-push@v5
       with:
-       context: .
-       tags: ghcr.io/markjeli/myapp:latest
-       push: true
+        image: image-name
+        registry: ghcr.io
+        githubOrg: override-org # optional
+        username: ${{ github.actor }}
+        password: ${{ secrets.CR_PAT }}
+  #  - uses: docker/build-push-action@v2
+  #     with:
+  #      context: .
+  #      tags: ghcr.io/markjeli/myapp:latest
+  #      push: true
 
     # - name: Build the hello-world Docker image
     #   run: |
