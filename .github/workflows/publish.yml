@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Publish to Registry
-      uses: elgohr/Publish-Docker-Github-Action@v5
-      with:
+        uses: elgohr/Publish-Docker-Github-Action@v5
+        with:
         name: myDocker/repository
         username: ${{ github.actor }}
         password: ${{ secrets.CR_PAT2 }}
