@@ -47,7 +47,7 @@ jobs:
 
        - name: Build the stack
          run: |
-           docker-compose up -d
+           docker-compose build
            docker-compose push
            echo "AAAAA"
 
