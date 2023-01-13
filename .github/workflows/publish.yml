@@ -24,8 +24,14 @@ jobs:
            username: ${{ github.actor }}
            password: ${{ secrets.CR_PAT }}
 
-       - name: Build the stack
-         run: |
-           docker-compose build
-           docker-compose push
-           echo "AAAAA"
+       - name: publish
+         uses: pennsignals/publish_docker-compose@v0.1.0
+         with:
+           docker_compose: 'docker-compose.yml' # required
+           repo_token: "${{ secrets.CR_PAT }}"
+
+      #  - name: Build the stack
+      #    run: |
+      #      docker-compose build
+      #      docker-compose push
+      #      echo "AAAAA"
