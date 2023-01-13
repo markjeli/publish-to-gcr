@@ -8,15 +8,23 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      # This is used to complete the identity challenge
+      # with sigstore/fulcio when running outside of PRs.
+      id-token: write
+
     steps:
        - uses: actions/checkout@v2  
-       
+
        - name: Log into registry ${{ env.REGISTRY }}
-        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.CR_PAT }}
+          uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+          with:
+            registry: ${{ env.REGISTRY }}
+            username: ${{ github.actor }}
+            password: ${{ secrets.CR_PAT }}
+
        - name: Build the stack
          run: |
            docker-compose up -d
