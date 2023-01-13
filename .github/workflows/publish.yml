@@ -15,13 +15,13 @@ jobs:
       # with sigstore/fulcio when running outside of PRs.
       id-token: write
     steps:
-       - uses: actions/checkout@v3
+       - uses: actions/checkout@v2
 
-       - run: | 
-           echo $CR_PAT | docker login ghcr.io -u markjeli --password-stdin
+       - run: echo $CR_PAT | docker login ghcr.io -u markjeli --password-stdin
          env:
            CR_PAT: ${{ secrets.CR_PAT }}
        - run: |
+           echo 'latest'
            docker-compose build
            docker-compose push
 
