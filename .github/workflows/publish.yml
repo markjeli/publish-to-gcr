@@ -9,15 +9,10 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-        # need checkout before using compose-action
-        - uses: actions/checkout@v3
-        - uses: isbang/compose-action@v1.4.1  
-          with:
-            compose-file: "./docker/docker-compose.yml"
-            down-flags: "--volumes"
-            services: |
-              helloworld2
-              helloworld3
+       - uses: actions/checkout@v2
+       - name: Build the stack
+         run: docker compose up 
+           docker compose push
 
       # - name: Build and push
       #   uses: mr-smithers-excellent/docker-build-push@v5
