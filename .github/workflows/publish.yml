@@ -1,12 +1,30 @@
-name: ci
+name: Docker
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
 
 on:
+  schedule:
+    - cron: '32 7 * * *'
   push:
-    branches:
-      - 'master'
+    branches: [ "master" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "master" ]
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}-dupa
+
 
 jobs:
-  docker:
+  build:
+
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -16,14 +34,16 @@ jobs:
       id-token: write
 
     steps:
-       - uses: actions/checkout@v2  
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-       - name: Log into registry ${{ env.REGISTRY }}
-          uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-          with:
-            registry: ${{ env.REGISTRY }}
-            username: ${{ github.actor }}
-            password: ${{ secrets.CR_PAT }}
+      # Install the cosign tool except on PRs
+      # https://github.com/sigstore/cosign-installer
+      - name: Install cosign
+        if: github.event_name != 'pull_request'
+        uses: sigstore/cosign-installer@f3c664df7af409cb4873aa5068053ba9d61a57b6 #v2.6.0
+        with:
+          cosign-release: 'v1.11.0'
 
        - name: Build the stack
          run: |
