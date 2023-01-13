@@ -40,7 +40,7 @@ jobs:
       - name: Build and push the stack
         id: build-and-push
          run: |
-           docker-compose build -d
+           docker-compose up -d
            docker-compose push
            echo "AAAAA"
 
