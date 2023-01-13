@@ -21,7 +21,6 @@ jobs:
          env:
            CR_PAT: ${{ secrets.CR_PAT }}
        - run: |
-           echo 'latest'
            docker-compose build
            docker-compose push
 
